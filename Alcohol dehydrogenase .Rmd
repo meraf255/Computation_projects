@@ -1,0 +1,876 @@
+---
+title: "Substrate Specificity of Yeast Alcohol Dehydrogenase"
+author: "Meraf Haileslassie, in collaboration with Will Asinger, and Calvin Reyes"
+date: "Due Thursday, May 18, 2023"
+output:
+  pdf_document: default
+  word_document: default
+subtitle: 'Math 236: Mathematics of Biology'
+editor_options:
+  chunk_output_type: console
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Abstract
+
+Insights into the catalytic mechanism of yeast alcohol dehydrogenase (ADH) by investigating its activity with various straight-chain primary alcohols. Focused on ethanol, methanol, 1-propanol, and 1-octanol, to compare binding affinity (km) and enzyme turnover (Vmax). While previous research by Benner indicated that yeast ADH has a narrower substrate specificity and is most active with ethanol, we sought to expand the range of substrates and test how the increasing chain length of alcohols affects ADH reactivity. By employing the Michaelis-Menten model and conducting experiments with alcohol and NAD+ as substrates, we aimed to explore the reactivity patterns of yeast ADH.
+
+# Introduction
+
+Alcohol dehydrogenase is a group of oxidoreductases that facilitates the conversion between alcohols and aldehydes with the reduction of nicotinamide adenine dinucleotide (NAD+) to NADH(). ADH is widespread in animals, plants, fungi and bacteria. Our goal is to gain insight into the mechanism of yeast alcohol dehydrogenase catalysis by the use of alternative alcohol substrates. We want to look at yeast ADH activity with several  straight chain primary alcohols by comparing both km(reflective of binding affinity) and Vmax (reflective of enzyme turnover) . A paper of engineering yeast alcohol dehydrogenase compares ADH from yeast and ADH from horse liver to identify the flexibility of the two ADH’s to substrate specificity. Yeast ADH has a narrower substrate specificity meaning that it can only work with a small number of substrates(Benner, 1995). 
+
+We want to look into ethanol, methanol, 1-propanol and 1-octanol as substrates. Methanol (CH3OH) also known as methyl alcohol is the simplest of all alcohols. It is a very toxic alcohol, and only contains a single carbon. Ethanol (CH3CH2OH) contains two carbon atoms(Wade,2023). 1-propanol (CH3CH2CH2OH) has three carbon atoms and 1-octanol(CH3(CH2)7OH) which has 8 carbon atoms. Benner's paper shows that yeast alcohol dehydrogenase is most active with ethanol as a substrate and its activity decreases as the number of chains of the alcohol increases.
+
+In this reaction we will be working with two substrates alcohol and NAD+ which makes it more interesting than working with a single substrate. beta-nicotinamide adenine dinucleotide (NAD+) is necessary for the oxidative dehydrogenation of other substrates. With the use of NAD+ at a constant high concentration we conducted an experiment on our 4 different alcohols and analyzed data using Michaelis Menten model fit by non linear regression. Our primary research question was how does the increasing chain length of our different alcohol substrates affect the reactivity of ADH? We wanted to test for ourselves what Benner found in their research by also expanding our choices of alcohol as substrates. 
+
+
+# Methodology
+
+## Preparing the enzyme and substrate 
+
+Just like many biochemistry and molecular biology experiments we needed a buffer to conduct our experiment. We used 0.06 M TRIS pH9, which helped us maintain a stable pH. To ensure that the yeast ADH did not adhere to any of the tubes or trays used, we added it to a mixture of 0.1% Bovine serum albumin (BSA) and 100mL of distilled water, making the enzyme more manageable. The final enzyme product was a $2 microg/mL$ ADH stock solution. Alcohol dehydrogenase is an enzyme used for oxidation  and reduction of carbon atom alcohols. They are NAD+ dependent, a coenzyme/substrate  necessary for the oxidative dehydrogenation of other substrates. Its chemical formula is $Ethanol(or other alcohol) + NAD+ -> aldehyde + NADH+H+$.We prepared 75 mM NAD+ in distilled water. ( to get 200mL of NAD+ coenzyme).
+
+## Preparing the alcohols 
+ 
+We diluted our alcohol substrates with distilled water to create different concentration levels for the measuring process. Each alcohol has a unique concentration requirement, so varying amounts of alcohol were added to distilled water to achieve the desired concentration. See the table below for the specific alcohol volumes used.
+
+
+
+**Table 1: Alcohol concentration (M) and volume (mL)**
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Concentration (M).& Ethanol(mL)   & Methanol (mL)  & 1-Propanol (mL)   & 1-Octanol(mL)   \\ \hline
+1.2         & 1.751711027            & 1.21517067    & 2.242164179    & 4.724183797   \\ \hline
+0.9         & 1.31378327      & 0.9113780025     & 1.681623134       & 3.543137848 \\ \hline
+0.6     & 0.8758555133            & 0.607585335        & 1.12108209   & 2.362091898  \\ \hline
+0.3        & 0.4379277567         & 0.3037926675   & 0.5605410448  & 1.181045949      \\ \hline
+0.21    & 0.3065494297       & 0.2126548673     & 0.3923787313   & 0.8267321644 \\ \hline
+0.99   & 0.1445161597   & 0.1002515803            & 0.1849785448      & 0.3897451632  \\ \hline
+0.048.  & 0.07006844106       & 0.0486068268       & 0.08968656716   & 0.1889673519  \\ \hline
+0.021    & 0.03065494297        & 0.02126548673    & 0.03923787313    & 0.08267321644 \\ \hline
+\end{tabular}
+
+
+The above concentration of alcohols is in its volume form. Inorder to get that we used a range of concentrations(m) as we can see in our first column of the table 1, and used the density and molar mass of each of the alcohols in order to get the right volume of the concentration. By multiplying the concentration to the molar mass of the alcohol times 25 divided by 1000 we are able to get the mass. From there we take the mass and divide it by the density of the alcohol. The next table shows the alcohols,their molar mass(g/mol), and density(g/ml).  For Example for a concentration of 1.2 to calculate for ethanol:
+
+
+$Mass(g) = 1.2(m)X46.07(g/mol)X0.25$
+$Volume(mL) = mass(g)/0.789(g/mL)$
+
+**Table 2: Molar Mass and Density of Alcohols**
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Alcohol.  & Molar Mass $(g/mol)$     & Density $(g/mL)$  \\ \hline
+Ethanol   &  46.07.   & 0.789 \\ \hline
+Methanol  & 0.791.    & 32.04\\ \hline
+1-Propanol     & 0.804     & 60.09  \\ \hline
+1-Octanol       & 0.827.   & 130.23     \\ \hline
+\end{tabular}
+
+We added the acquired volumes for each substrate to a volumetric flask, dilute with distilled water up to 25mL. We labeled them with the volume added and started to set up our tray for measurement.
+
+## Running the reaction
+
+We used a plate reader with an automated enzyme injection set to read absorbance automatically. Our plate consisted of various alcohol substrates at different concentrations while maintaining TRIS pH9 (the buffer), NAD+ (coenzyme), and ADH (enzyme) constant. We used $50 microL$ of NAD+, $25 microL$ of the buffer $(0.6 M TRIS pH9)$, $50 microL$ of the alcohol substrates for each concentration, and $50 microL$ of distilled water as our control. We placed the tray in the reader to pipet $25 microL$ of ADH, all at room temperature, 25 degree Celsius. We set up the plate reader at a 340 nm wavelength, we let the machine do its work. It would take a minute to spin and after a click it would read the absorption. It measured the absorbance for 30 second intervals for 20 minutes.
+
+We used these reads to help us understand absorption rate through time. Using Beer's law assumption the amount of light absorbed is directly proportional to the concentration of the absorbing chemical in solution (Mayerhöfer,2020).From this assumption we are able to obtain the extinction coefficient, how much light the concentration absorbs at 340 nm wavelength.We were then able to construct a calibration curve that relates the absorbance of the solution to the concentration of our alcohol substrates.The increase in absorbance with time represents the production of NADH.
+ 
+
+
+## Model
+
+The Michaelis Menten equation is a mathematical model that describes rate of enzyme catalyzed as a function the concentration of its substrate: $V0 =Vmax*([S]/[S]+Km)$ 
+
+V0 stands for the initial velocity of the reaction, [S] is the concentration of the substrates (in our case it's the range of concentration of the alcohols). Vmax is the maximum velocity of the reaction and Km is the Michaelis constant, it measures affinity. Affinity will define the strength of the interaction between ADH and the different alcohol substrates. It can also be defined as  a measure of the concentration of substrate at which the enzyme works at half its maximum velocity (Vmax). A lower Km value indicates that the enzyme is more efficient at converting the alcohol into aldehyde at a lower substrate concentration. On the other hand, Vmax is much higher than Km, it is a measure of the maximum rate of reaction that the enzyme can catalyze, under conditions where the substrate concentration is saturating. 
+
+Figure 1 through 4 shows us the time course of various alcohol concentrations derived from our absorption data. We will use this data to obtain initial rates. 
+
+
+
+```{r, include=FALSE}
+data1 <- read_csv("~/Math 236 S23/Project/will_meraf_calvin/data/four_alcohols1.csv") %>%
+  rename('time' = `Kinetic read`) %>% 
+  drop_na(time) %>% #drop na values 
+  mutate(time = as.numeric(time)) #import data
+
+data2 <- read_csv("~/Math 236 S23/Project/will_meraf_calvin/data/four_alcohols2.csv") %>%
+  rename('time' = `Kinetic read`) %>% 
+  drop_na(time) %>% 
+  mutate(time = as.numeric(time)) #import data
+
+t <- data1$time #time variable (at 30 minute interval)
+```
+
+
+
+```{r, include=FALSE}
+# ethanol data 1st experiment 
+plot(data1$time, data1$B2, type = 'l', col = 'red', ylim = c(0.08,.6))
+lines(data1$time, data1$B3, col = 'orange')
+lines(data1$time, data1$B4, col = 'gold')
+lines(data1$time, data1$B5, col = 'green')
+lines(data1$time, data1$B6, col = 'lightblue')
+lines(data1$time, data1$B7, col = 'blue')
+lines(data1$time, data1$B8, col = 'purple')
+lines(data1$time, data1$B9, col = 'pink')
+lines(data1$time, data1$B10, col = 'black')
+
+#ethanol data 2nd experiment 
+plot(data2$time, data2$B2, type = 'l', col = 'red', ylim = c(0.08,.6))
+lines(data2$time, data2$B3, col = 'orange')
+lines(data2$time, data2$B4, col = 'gold')
+lines(data2$time, data2$B5, col = 'green')
+lines(data2$time, data2$B6, col = 'lightblue')
+lines(data2$time, data2$B7, col = 'blue')
+lines(data2$time, data2$B8, col = 'purple')
+lines(data2$time, data2$B9, col = 'pink')
+lines(data2$time, data2$B10, col = 'black')
+
+# average of each concentration from the two experiments
+B2 <- (data1$B2 + data2$B2) / 2
+B3 <- (data1$B3 + data2$B3) / 2
+B4 <- (data1$B4 + data2$B4) / 2
+B5 <- (data1$B5 + data2$B4) / 2
+B6 <- (data1$B6 + data2$B6) / 2
+B7 <- (data1$B7 + data2$B7) / 2
+B8 <- (data1$B8 + data2$B8) / 2
+B9 <- (data1$B9 + data2$B9) / 2
+B10 <- (data1$B10 + data2$B10) / 2
+
+
+
+```
+
+```{r, include=FALSE}
+# methanol 1st experiment 
+plot(data1$time, data1$C2, type = 'l', col = 'red', ylim = c(0.08,.3), xlab = 'time', ylab = "Absorbance rate for methanol")
+lines(data1$time, data1$C3, col = 'orange')
+lines(data1$time, data1$C4, col = 'gold')
+lines(data1$time, data1$C5, col = 'green')
+lines(data1$time, data1$C6, col = 'lightblue')
+lines(data1$time, data1$C7, col = 'blue')
+lines(data1$time, data1$C8, col = 'purple')
+lines(data1$time, data1$C9, col = 'pink')
+lines(data1$time, data1$C10, col = 'black')
+ 
+
+# methanol 2nd experiment 
+plot(data2$time, data2$C2, type = 'l', col = 'red', ylim = c(0.08,.3), xlab = 'time', ylab = "Absorbance rate for 1-propanol")
+lines(data2$time, data2$C3, col = 'orange')
+lines(data2$time, data2$C4, col = 'gold')
+lines(data2$time, data2$C5, col = 'green')
+lines(data2$time, data2$C6, col = 'lightblue')
+lines(data2$time, data2$C7, col = 'blue')
+lines(data2$time, data2$C8, col = 'purple')
+lines(data2$time, data2$C9, col = 'pink')
+lines(data2$time, data2$C10, col = 'black')
+
+# average of each concentration from the two experiments
+C2 <- (data1$C2 + data2$C2) / 2
+C3 <- (data1$C3 + data2$C3) / 2
+C4 <- (data1$C4 + data2$C4) / 2
+C5 <- (data1$C5 + data2$C5) / 2
+C6 <- (data1$C7 + data2$C6) / 2
+C7 <- (data1$C7 + data2$C7) / 2
+C8 <- (data1$C8 + data2$C8) / 2
+C9 <- (data1$C9 + data2$C9) / 2
+C10 <- (data1$C10 + data2$C10) / 2
+ 
+
+```
+
+
+
+
+```{r, include=FALSE}
+# propanol 1st experiment
+plot(data1$time, data1$D2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data1$time, data1$D3, col = 'orange')
+lines(data1$time, data1$D4, col = 'gold')
+lines(data1$time, data1$D5, col = 'green')
+lines(data1$time, data1$D6, col = 'lightblue')
+lines(data1$time, data1$D7, col = 'blue')
+lines(data1$time, data1$D8, col = 'purple')
+lines(data1$time, data1$D9, col = 'pink')
+lines(data1$time, data1$D10, col = 'black')
+
+# propanol 2nd experiment
+plot(data2$time, data2$D2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data2$time, data2$D3, col = 'orange')
+lines(data2$time, data2$D4, col = 'gold')
+lines(data2$time, data2$D5, col = 'green')
+lines(data2$time, data2$D6, col = 'lightblue')
+lines(data2$time, data2$D7, col = 'blue')
+lines(data2$time, data2$D8, col = 'purple')
+lines(data2$time, data2$D9, col = 'pink')
+lines(data2$time, data2$D10, col = 'black')
+
+# average of each concentration from the two experiments
+
+D2 <- (data1$D2 + data2$D2) / 2
+D3 <- (data1$D3 + data2$D3) / 2
+D4 <- (data1$D4 + data2$D4) / 2
+D5 <- (data1$D5 + data2$D4) / 2
+D6 <- (data1$D6 + data2$D6) / 2
+D7 <- (data1$D7 + data2$D7) / 2
+D8 <- (data1$D8 + data2$D8) / 2
+D9 <- (data1$D9 + data2$D9) / 2
+D10 <- (data1$D10 + data2$D10) / 2
+
+
+```
+
+
+
+
+```{r, include=FALSE}
+
+# octanol 1st experiment
+plot(data1$time, data1$E2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data1$time, data1$E3, col = 'orange')
+lines(data1$time, data1$E4, col = 'gold')
+lines(data1$time, data1$E5, col = 'green')
+lines(data1$time, data1$E6, col = 'lightblue')
+lines(data1$time, data1$E7, col = 'blue')
+lines(data1$time, data1$E8, col = 'purple')
+lines(data1$time, data1$E9, col = 'pink')
+lines(data1$time, data1$E10, col = 'black')
+
+# octanol 2nd experiment
+plot(data2$time, data2$E2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data2$time, data2$E3, col = 'orange')
+lines(data2$time, data2$E4, col = 'gold')
+lines(data2$time, data2$E5, col = 'green')
+lines(data2$time, data2$E6, col = 'lightblue')
+lines(data2$time, data2$E7, col = 'blue')
+lines(data2$time, data2$E8, col = 'purple')
+lines(data2$time, data2$E9, col = 'pink')
+lines(data2$time, data2$E10, col = 'black')
+
+# average of each concentration from the two experiments
+E2 <- (data1$E2 + data2$E2) / 2
+E3 <- (data1$E3 + data2$E3) / 2
+E4 <- (data1$E4 + data2$E4) / 2
+E5 <- (data1$E5 + data2$E4) / 2
+E6 <- (data1$E9 + data2$E6) / 2
+E7 <- (data1$E6 + data2$E7) / 2
+E8 <- (data1$E7 + data2$E8) / 2
+E9 <- (data1$E8 + data2$E9) / 2
+E10 <- (data1$E10 + data2$E10) / 2
+
+
+```
+
+
+```{r,echo=FALSE,fig.width=4,fig.height=3}
+# merge the average of each concentration into one plot
+plot(t, B2, type = 'l', col = 'red', ylim = c(0.08, .6),xlab = 'Time (minutes)', ylab = "Concentration of ethanol (mL)", sub = "Figure 1: Time course of ethanol concentration increase") 
+lines(t, B3, col = 'orange')
+lines(t, B4, col = 'gold')
+lines(t, B5, col = 'green')
+lines(t, B6, col = 'lightblue')
+lines(t, B7, col = 'blue')
+lines(t, B8, col = 'purple')
+lines(t, B9, col = 'pink')
+lines(t, B10, col = 'black')
+
+# merge the average of each concentrations into one plot 
+
+plot(t, C2, type = 'l', col = 'red', ylim = c(0.1, .3), xlab = 'time (minute)', ylab = "Concentration of methanol (mL)", sub = "Figure 2: Time course of methanol concentration increase")
+lines(t, C3, col = 'orange')
+lines(t, C4, col = 'gold')
+lines(t, C5, col = 'green')
+lines(t, C6, col = 'lightblue')
+lines(t, C7, col = 'blue')
+lines(t, C8, col = 'purple')
+lines(t, C9, col = 'pink')
+lines(t, C10, col = 'black')
+
+
+```
+
+
+```{r,echo=FALSE,fig.width=4,fig.height=3}
+# merge the average of each concentration into one plot 
+plot(t, D2, type = 'l', col = 'red', ylim = c(0.1, 0.2),xlab = 'time', ylab = "Concentration of propanol (mL)", sub = "Figure 3: Time course of propanol concentration increase")
+lines(t, D3, col = 'orange')
+lines(t, D4, col = 'gold')
+lines(t, D5, col = 'green')
+lines(t, D6, col = 'lightblue')
+lines(t, D7, col = 'blue')
+lines(t, D8, col = 'purple')
+lines(t, D9, col = 'pink')
+lines(t, D10, col = 'black')
+
+
+# merge the average of each concentration into one plot 
+plot(t, E2, type = 'l', col = 'red', ylim = c(0.1, .2),xlab = 'time', ylab = "Concentration of octanol (mL)", sub = "Figure 4: Time course of octanol concentration increase") 
+lines(t, E3, col = 'orange')
+lines(t, E4, col = 'gold')
+lines(t, E5, col = 'green')
+lines(t, E6, col = 'lightblue')
+lines(t, E7, col = 'blue')
+lines(t, E8, col = 'purple')
+lines(t, E9, col = 'pink')
+lines(t, E10, col = 'black')
+
+```
+
+## Data
+
+From Figure 1 through 4 we used the initial increase in absorbance measured to convert to initial rates. Since concentration changes are relatively constant we fit a linear regression model to the initial data points and calculate the slope of the regression line. This helped us estimate the initial rate of the process. These initial rates were plotted against the different concentration for each alcohol (substrate) to give us a relationship from which we could determine estimates for Vmax and Km (Figure 5 through 8). Our Michaelis-Menten plots will be curved; $V0=Vmax*([S]/[S]+Km)$ where V0 is the initial reaction velocity at a certain substrate concentration.
+
+
+We got a hyperbolic graph that confirmed our assumptions of the Michaelis-Menten relationship. However, it appeared to deviate slightly when considering Octanol (figure 8). By analyzing figures 5 through 8, we visually estimated the parameters Vmax and Km. It is important to be careful with initial parameter estimation because non linear regression is sensitive to those values. After obtaining our km and Vmax values we built our model by plugging in those values into our equation i.e, $V0=Vmax*([S]/[S]+Km)$. We plotted Michaelis Menten's plot to the model to evaluate the fit. 
+
+
+
+**Table 3: Estimates of Vmax(mol/min) and KM(mM)**
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Alcohol.  & Vmax(mol/min)     & Km(mM)  \\ \hline
+Ethanol   &  0.0006   & 0.1 \\ \hline
+Methanol  & 0.00008    & 0.3 \\ \hline
+Propanol     & 0.00003     & 0.1  \\ \hline
+Octanol       & 0.00003   & 0.001    \\ \hline
+\end{tabular}
+
+
+```{r, include =FALSE}
+m2_eth = lm(B2[1:4] ~ t[1:4])$coefficients[[2]]
+m3_eth = lm(B3[1:4] ~ t[1:4])$coefficients[[2]]
+m4_eth = lm(B4[1:4] ~ t[1:4])$coefficients[[2]]
+m5_eth = lm(B5[1:4] ~ t[1:4])$coefficients[[2]]
+m6_eth = lm(B6[1:4] ~ t[1:4])$coefficients[[2]]
+m7_eth = lm(B7[1:4] ~ t[1:4])$coefficients[[2]]
+m8_eth = lm(B8[1:4] ~ t[1:4])$coefficients[[2]]
+m9_eth = lm(B9[1:4] ~ t[1:4])$coefficients[[2]]
+m10_eth = lm(B10[1:4] ~ t[1:4])$coefficients[[2]]
+
+m2_meth = lm(C2[1:12] ~ t[1:12])$coefficients[[2]]
+m3_meth = lm(C3[1:12] ~ t[1:12])$coefficients[[2]]
+m4_meth = lm(C4[1:12] ~ t[1:12])$coefficients[[2]]
+m5_meth = lm(C5[1:12] ~ t[1:12])$coefficients[[2]]
+m6_meth = lm(C6[1:12] ~ t[1:12])$coefficients[[2]]
+m7_meth = lm(C7[1:12] ~ t[1:12])$coefficients[[2]]
+m8_meth = lm(C8[1:12] ~ t[1:12])$coefficients[[2]]
+m9_meth = lm(C9[1:12] ~ t[1:12])$coefficients[[2]]
+m10_meth = lm(C10[1:12] ~ t[1:12])$coefficients[[2]]
+
+m2_prop = lm(D2[1:12] ~ t[1:12])$coefficients[[2]]
+m3_prop = lm(D3[1:12] ~ t[1:12])$coefficients[[2]]
+m4_prop = lm(D4[1:12] ~ t[1:12])$coefficients[[2]]
+m5_prop = lm(D5[1:12] ~ t[1:12])$coefficients[[2]]
+m6_prop = lm(D6[1:12] ~ t[1:12])$coefficients[[2]]
+m7_prop = lm(D7[1:12] ~ t[1:12])$coefficients[[2]]
+m8_prop = lm(D8[4:12] ~ t[4:12])$coefficients[[2]]
+m9_prop = lm(D9[1:12] ~ t[1:12])$coefficients[[2]]
+m10_prop = lm(D10[1:12] ~ t[1:12])$coefficients[[2]]
+
+m2_oct = lm(E2[1:16] ~ t[1:16])$coefficients[[2]]
+m3_oct = lm(E3[1:16] ~ t[1:16])$coefficients[[2]]
+m4_oct = lm(E4[1:16] ~ t[1:16])$coefficients[[2]]
+m5_oct = lm(E5[1:16] ~ t[1:16])$coefficients[[2]]
+m6_oct = lm(E6[1:16] ~ t[1:16])$coefficients[[2]]
+m7_oct = lm(E7[1:16] ~ t[1:16])$coefficients[[2]]
+m8_oct = lm(E8[1:16] ~ t[1:16])$coefficients[[2]]
+m9_oct = lm(E9[1:16] ~ t[1:16])$coefficients[[2]]
+m10_oct = lm(E10[1:16] ~ t[1:16])$coefficients[[2]]
+
+V0s_eth = c(m2_eth, m3_eth, m4_eth, m5_eth, m6_eth, m7_eth, m8_eth, m9_eth, m10_eth)
+V0s_eth = V0s_eth - m10_eth
+
+V0s_meth = c(m2_meth, m3_meth, m4_meth, m5_meth, m6_meth, m7_meth, m8_meth, m9_meth, m10_meth)
+V0s_meth = V0s_meth - m10_meth
+
+V0s_prop = c(m2_prop, m3_prop, m4_prop, m5_prop, m6_prop, m7_prop, m8_prop, m9_prop, m10_prop)
+V0s_prop = V0s_prop - m10_prop
+
+V0s_oct = c(m2_oct, m3_oct, m4_oct, m5_oct, m6_oct, m7_oct, m8_oct, m9_oct, m10_oct)
+V0s_oct = V0s_oct - m10_oct
+
+Cs = c(1.2, .9, .6, .3, .21, .099, .048, .021, 0) # substrate concentrations
+
+
+```
+
+
+
+```{r,echo=FALSE,fig.width=3,fig.height=3}
+plot(Cs, V0s_eth, ylab = "Initial velocity (micormolar/second)", xlab = "Concentration of substrates (micro molar)", sub = "Figure 5: Michalis-Menten plot for Ethanol ")
+
+plot(Cs, V0s_meth, ylab = "Initial velocity (m/L-min)", xlab = "Diffrent concentration of substrates (micro molar)", sub = "Figure 6: Michalis-Menten plot for Methanol")
+
+
+```
+
+```{r,echo=FALSE,fig.width=3,fig.height=3}
+plot(Cs, V0s_prop, ylab = "Initial velocity (m/L-min)", xlab = "Diffrent concentration of substrates (micro molar)", sub = "Figure 7: Michalis-Menten plot for Propanol")
+
+plot(Cs, V0s_oct, ylab = "Initial velocity (nmol/L-min)", xlab = "Diffrent concentration of substrates (micro molar)", sub = "Figure 8: Michalis-Menten plot for Octanol")
+```
+
+
+```{r, include=FALSE}
+fit_mm_eth = nls(V0s_eth ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.0006, KM = 0.1)) #nls fit M-M model
+fit_mm_meth = nls(V0s_meth ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.00008, KM = 0.3)) #nls fit M-M model
+fit_mm_prop = nls(V0s_prop ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.00003 , KM = 0.1)) #nls fit M-M model
+fit_mm_oct = nls(V0s_oct ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.00003, KM = 0.001)) #nls fit M-M model
+
+
+Vmax_mm_eth <- summary(fit_mm_eth)$coefficients[[1,1]] # extracting coefficients
+KM_mm_eth <- summary(fit_mm_eth)$coefficients[[2,1]]
+
+Vmax_mm_meth <- summary(fit_mm_meth)$coefficients[[1,1]] # extracting coefficients
+KM_mm_meth <- summary(fit_mm_meth)$coefficients[[2,1]]
+
+Vmax_mm_prop <- summary(fit_mm_prop)$coefficients[[1,1]] # extracting coefficients
+KM_mm_prop <- summary(fit_mm_prop)$coefficients[[2,1]]
+
+Vmax_mm_oct <- summary(fit_mm_oct)$coefficients[[1,1]] # extracting coefficients
+KM_mm_oct <- summary(fit_mm_oct)$coefficients[[2,1]]
+
+V0s_model_eth = Vmax_mm_eth * Cs / (KM_mm_eth + Cs) # building out the model
+V0s_model_meth = Vmax_mm_meth * Cs / (KM_mm_meth + Cs) # building out the model
+V0s_model_prop = Vmax_mm_prop * Cs / (KM_mm_prop + Cs) # building out the model
+V0s_model_oct = Vmax_mm_oct * Cs / (KM_mm_oct + Cs) # building out the model
+```
+
+
+# Results
+
+Table 4 confirms our hypothesis that longer carbon chains hinder interaction with sites of ADH. Both 1-propanol and 1-octanol react with ADH, but at a lower rate compared to ethanol and methanol. From figure 10 and table 4 we can see that methanol has a higher vmax than 1-octanol and 1-propanol. Something very relevant we saw from our study was that 1-propanol had a high km value of 0.4427181(mM). Km represents affinity, the strength of the interaction between ADH and the  alcohol substrates. For a higher km value we would need a higher concentration of 1-propanol inorder to bind with ADH for the formation of our substrate complex. On the other hand for our smaller km values this means that the enzyme is more efficient at binding with the alcohol at a lower substrate concentration. In addition to this we found a contradiction in our methanol result. With a vmax value (0.000134mol/min) it is slightly lower than ethanol refuting our idea of smaller carbon chains that react faster with ADH. 
+
+
+
+
+**Table 4: Actual Vmax(mol/min) and Km(mM) values**
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Alcohol.  & Vmax(mol/min)    & Km(mM)  \\ \hline
+Ethanol   &  0.0005742494   & 0.05991597 \\ \hline
+Methanol  & 0.0001341098    & 0.8359628 \\ \hline
+1-Propanol     & 0.00004448526    & 0.4427181  \\ \hline
+1-Octanol       & 0.00002489353   & 0.01324913    \\ \hline
+\end{tabular}
+
+
+
+
+
+```{r,echo=FALSE,fig.width=3,fig.height=3}
+plot(Cs, V0s_eth, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 6: Ethanol Michaelis-Menten curve")
+lines(Cs, V0s_model_eth, col = 'red') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'red'))
+
+
+plot(Cs, V0s_meth, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 7: Michaelis-Menten curve")
+lines(Cs, V0s_model_meth, col = 'pink') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'pink'))
+
+
+```
+
+```{r,echo=FALSE,fig.width=3,fig.height=3}
+plot(Cs, V0s_prop, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 8: Michaelis-Menten curve")
+lines(Cs, V0s_model_prop, col = 'orange') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'orange'))
+
+plot(Cs, V0s_oct, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 9: Michaelis-Menten curve")
+lines(Cs, V0s_model_oct, col = 'green') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'green'))
+```
+
+ 
+```{r, echo=FALSE,fig.width=5.5,fig.height=4}
+
+plot(Cs, V0s_meth, col = 'pink', xlab = "Concentration of substrate (micromolar)", ylab = "Initial rate of reaction (micromolar/sec)", sub = 'Figure 10: Methanol, Octanol, and Propanol Michaelis-Menten curves')
+points(Cs, V0s_prop, col = 'orange')
+points(Cs, V0s_oct, col = 'green')
+lines(Cs, V0s_model_meth, col = 'pink')
+lines(Cs, V0s_model_prop, col = 'orange')
+lines(Cs, V0s_model_oct, col = 'green')
+legend('topleft', c("Methanol data", "Propanol data", "Octanol data", "Methanol model", "Propanol model", "Octanol model"), lty = c(NA,NA,NA,1,1,1), pch = c(1,1,1,NA,NA,NA), col = c('pink', 'orange', 'green', 'pink', 'orange', 'green'), cex = 0.7)
+```
+
+# Discussion
+
+Overall the data fit the model significantly well, although octanol performed relatively poorly. We also saw a high affinity for 1-propanol which was interesting. Perhaps the surprisingly high KM for 1-propanol is due to its kink. Which would be interesting to look further into. 
+
+From Benner's research on engineering yeast alcohol dehydrogenase by replacing Trp54 by Leu broadens substrate specificity, they looked into how in year ADH a specific amino acid Trp54 hindered the efficient oxidation of long chain primary alcohols. They altered the amino acid to Leucine. This process is the alteration by substituting one amino acid with another at a specific position in the protein sequence. This alteration resulted in a modified enzyme that effectively oxidized both longer and straight chain primary alcohols and branched chain alcohols. During our experiment we were hindered by the limitation of enzyme activity towards other alcohols, replacing Trp54 by Leucine broadens the ADH's substrate specificity. They cited a source from Creaser 1990, that looked into alteration of specific amino acids in yeast alcohol dehydrogenase. They replaced Thr45 with a smaller side chain amino acid, Thr455er; it showed a better catalytic activity for the oxidation of several larger substrates like 2-octanol. Enabling the enzyme to efficiently process a wide range of alcohol substrates is an interesting topic I would want to dive deep into. 
+ 
+ 
+In addition to this it would be interesting to experiment further on the impact of TRIS ph9. How does the interaction between Tris and ADH lead to changes in the kinetic parameters (Km and Vmax)? Does it alter its activity?
+
+
+
+
+# References
+
+Elmar G.Weinhold, Steven A.Benner(1995), Engineering yeast alcohol dehydrogenase. Replacing Trp54 by Leu broadens substrate specificity,Protein Engineering vol.8. 
+
+Mayerhöfer,  Pahlow, Susanne, Popp, Jürgen(2020), The Bouguer-Beer-Lambert Law: Shining Light on the Obscure, volume 21. 
+
+Sanft, R., Walter A. (2020). Exploring Mathematical Modeling in Biology Through Case Studies and Experimental Activities. Elsevier Inc.
+
+Sventlana Trivic, Vladimir Leskovac(1998), Influence of TRIS on kinetic mechanism of yeast alcohol dehydrogenase.Vol.13
+
+Zhang Erhao, Cao Yueqing, Xia Yuxian(2018), Ethanol Dehydrogenase I Contributes to Growth and Sporulation Under Low Oxygen Condition via Detoxification of Acetaldehyde in Metarhizium acridum, vol.9.
+
+ENVIRONMENTAL HEALTH CRITERIA 102 <https://www.inchem.org/documents/ehc/ehc/ehc102.htm>
+
+# Appendix (r codes)
+
+```{r}
+data1 <- read_csv("~/Math 236 S23/Project/will_meraf_calvin/data/four_alcohols1.csv") %>%
+  rename('time' = `Kinetic read`) %>% 
+  drop_na(time) %>% #drop na values 
+  mutate(time = as.numeric(time)) #import data
+
+data2 <- read_csv("~/Math 236 S23/Project/will_meraf_calvin/data/four_alcohols2.csv") %>%
+  rename('time' = `Kinetic read`) %>% 
+  drop_na(time) %>% 
+  mutate(time = as.numeric(time)) #import data
+
+t <- data1$time #time variable (at 30 minute interval)
+
+# ethanol data 1st experiment 
+plot(data1$time, data1$B2, type = 'l', col = 'red', ylim = c(0.08,.6))
+lines(data1$time, data1$B3, col = 'orange')
+lines(data1$time, data1$B4, col = 'gold')
+lines(data1$time, data1$B5, col = 'green')
+lines(data1$time, data1$B6, col = 'lightblue')
+lines(data1$time, data1$B7, col = 'blue')
+lines(data1$time, data1$B8, col = 'purple')
+lines(data1$time, data1$B9, col = 'pink')
+lines(data1$time, data1$B10, col = 'black')
+
+#ethanol data 2nd experiment 
+plot(data2$time, data2$B2, type = 'l', col = 'red', ylim = c(0.08,.6))
+lines(data2$time, data2$B3, col = 'orange')
+lines(data2$time, data2$B4, col = 'gold')
+lines(data2$time, data2$B5, col = 'green')
+lines(data2$time, data2$B6, col = 'lightblue')
+lines(data2$time, data2$B7, col = 'blue')
+lines(data2$time, data2$B8, col = 'purple')
+lines(data2$time, data2$B9, col = 'pink')
+lines(data2$time, data2$B10, col = 'black')
+
+# average of each concentration from the two experiments
+B2 <- (data1$B2 + data2$B2) / 2
+B3 <- (data1$B3 + data2$B3) / 2
+B4 <- (data1$B4 + data2$B4) / 2
+B5 <- (data1$B5 + data2$B4) / 2
+B6 <- (data1$B6 + data2$B6) / 2
+B7 <- (data1$B7 + data2$B7) / 2
+B8 <- (data1$B8 + data2$B8) / 2
+B9 <- (data1$B9 + data2$B9) / 2
+B10 <- (data1$B10 + data2$B10) / 2
+
+
+# methanol 1st experiment 
+plot(data1$time, data1$C2, type = 'l', col = 'red', ylim = c(0.08,.3), xlab = 'time', ylab = "Absorbance rate for methanol")
+lines(data1$time, data1$C3, col = 'orange')
+lines(data1$time, data1$C4, col = 'gold')
+lines(data1$time, data1$C5, col = 'green')
+lines(data1$time, data1$C6, col = 'lightblue')
+lines(data1$time, data1$C7, col = 'blue')
+lines(data1$time, data1$C8, col = 'purple')
+lines(data1$time, data1$C9, col = 'pink')
+lines(data1$time, data1$C10, col = 'black')
+ 
+
+# methanol 2nd experiment 
+plot(data2$time, data2$C2, type = 'l', col = 'red', ylim = c(0.08,.3), xlab = 'time', ylab = "Absorbance rate for 1-propanol")
+lines(data2$time, data2$C3, col = 'orange')
+lines(data2$time, data2$C4, col = 'gold')
+lines(data2$time, data2$C5, col = 'green')
+lines(data2$time, data2$C6, col = 'lightblue')
+lines(data2$time, data2$C7, col = 'blue')
+lines(data2$time, data2$C8, col = 'purple')
+lines(data2$time, data2$C9, col = 'pink')
+lines(data2$time, data2$C10, col = 'black')
+
+# average of each concentration from the two experiments
+C2 <- (data1$C2 + data2$C2) / 2
+C3 <- (data1$C3 + data2$C3) / 2
+C4 <- (data1$C4 + data2$C4) / 2
+C5 <- (data1$C5 + data2$C5) / 2
+C6 <- (data1$C7 + data2$C6) / 2
+C7 <- (data1$C7 + data2$C7) / 2
+C8 <- (data1$C8 + data2$C8) / 2
+C9 <- (data1$C9 + data2$C9) / 2
+C10 <- (data1$C10 + data2$C10) / 2
+ 
+
+# propanol 1st experiment
+plot(data1$time, data1$D2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data1$time, data1$D3, col = 'orange')
+lines(data1$time, data1$D4, col = 'gold')
+lines(data1$time, data1$D5, col = 'green')
+lines(data1$time, data1$D6, col = 'lightblue')
+lines(data1$time, data1$D7, col = 'blue')
+lines(data1$time, data1$D8, col = 'purple')
+lines(data1$time, data1$D9, col = 'pink')
+lines(data1$time, data1$D10, col = 'black')
+
+# propanol 2nd experiment
+plot(data2$time, data2$D2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data2$time, data2$D3, col = 'orange')
+lines(data2$time, data2$D4, col = 'gold')
+lines(data2$time, data2$D5, col = 'green')
+lines(data2$time, data2$D6, col = 'lightblue')
+lines(data2$time, data2$D7, col = 'blue')
+lines(data2$time, data2$D8, col = 'purple')
+lines(data2$time, data2$D9, col = 'pink')
+lines(data2$time, data2$D10, col = 'black')
+
+# average of each concentration from the two experiments
+
+D2 <- (data1$D2 + data2$D2) / 2
+D3 <- (data1$D3 + data2$D3) / 2
+D4 <- (data1$D4 + data2$D4) / 2
+D5 <- (data1$D5 + data2$D4) / 2
+D6 <- (data1$D6 + data2$D6) / 2
+D7 <- (data1$D7 + data2$D7) / 2
+D8 <- (data1$D8 + data2$D8) / 2
+D9 <- (data1$D9 + data2$D9) / 2
+D10 <- (data1$D10 + data2$D10) / 2
+
+# octanol 1st experiment
+plot(data1$time, data1$E2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data1$time, data1$E3, col = 'orange')
+lines(data1$time, data1$E4, col = 'gold')
+lines(data1$time, data1$E5, col = 'green')
+lines(data1$time, data1$E6, col = 'lightblue')
+lines(data1$time, data1$E7, col = 'blue')
+lines(data1$time, data1$E8, col = 'purple')
+lines(data1$time, data1$E9, col = 'pink')
+lines(data1$time, data1$E10, col = 'black')
+
+# octanol 2nd experiment
+plot(data2$time, data2$E2, type = 'l', col = 'red', ylim = c(0.1,.2))
+lines(data2$time, data2$E3, col = 'orange')
+lines(data2$time, data2$E4, col = 'gold')
+lines(data2$time, data2$E5, col = 'green')
+lines(data2$time, data2$E6, col = 'lightblue')
+lines(data2$time, data2$E7, col = 'blue')
+lines(data2$time, data2$E8, col = 'purple')
+lines(data2$time, data2$E9, col = 'pink')
+lines(data2$time, data2$E10, col = 'black')
+
+# average of each concentration from the two experiments
+E2 <- (data1$E2 + data2$E2) / 2
+E3 <- (data1$E3 + data2$E3) / 2
+E4 <- (data1$E4 + data2$E4) / 2
+E5 <- (data1$E5 + data2$E4) / 2
+E6 <- (data1$E9 + data2$E6) / 2
+E7 <- (data1$E6 + data2$E7) / 2
+E8 <- (data1$E7 + data2$E8) / 2
+E9 <- (data1$E8 + data2$E9) / 2
+E10 <- (data1$E10 + data2$E10) / 2
+
+
+# merge the average of each concentration into one plot
+plot(t, B2, type = 'l', col = 'red', ylim = c(0.08, .6),xlab = 'Time (minutes)', ylab = "Concentration of ethanol (mL)", sub = "Figure 1: Time course of ethanol concentration increase") 
+lines(t, B3, col = 'orange')
+lines(t, B4, col = 'gold')
+lines(t, B5, col = 'green')
+lines(t, B6, col = 'lightblue')
+lines(t, B7, col = 'blue')
+lines(t, B8, col = 'purple')
+lines(t, B9, col = 'pink')
+lines(t, B10, col = 'black')
+
+# merge the average of each concentrations into one plot 
+
+plot(t, C2, type = 'l', col = 'red', ylim = c(0.1, .3), xlab = 'time (minute)', ylab = "Concentration of methanol (mL)", sub = "Figure 2: Time course of methanol concentration increase")
+lines(t, C3, col = 'orange')
+lines(t, C4, col = 'gold')
+lines(t, C5, col = 'green')
+lines(t, C6, col = 'lightblue')
+lines(t, C7, col = 'blue')
+lines(t, C8, col = 'purple')
+lines(t, C9, col = 'pink')
+lines(t, C10, col = 'black')
+
+# merge the average of each concentration into one plot 
+plot(t, D2, type = 'l', col = 'red', ylim = c(0.1, 0.2),xlab = 'time', ylab = "Concentration of propanol (mL)", sub = "Figure 3: Time course of propanol concentration increase")
+lines(t, D3, col = 'orange')
+lines(t, D4, col = 'gold')
+lines(t, D5, col = 'green')
+lines(t, D6, col = 'lightblue')
+lines(t, D7, col = 'blue')
+lines(t, D8, col = 'purple')
+lines(t, D9, col = 'pink')
+lines(t, D10, col = 'black')
+
+
+# merge the average of each concentration into one plot 
+plot(t, E2, type = 'l', col = 'red', ylim = c(0.1, .2),xlab = 'time', ylab = "Concentration of octanol (mL)", sub = "Figure 4: Time course of octanol concentration increase") 
+lines(t, E3, col = 'orange')
+lines(t, E4, col = 'gold')
+lines(t, E5, col = 'green')
+lines(t, E6, col = 'lightblue')
+lines(t, E7, col = 'blue')
+lines(t, E8, col = 'purple')
+lines(t, E9, col = 'pink')
+lines(t, E10, col = 'black')
+
+
+m2_eth = lm(B2[1:4] ~ t[1:4])$coefficients[[2]] #linear regression model to the initial data points and calculate the slope of the regression line
+m3_eth = lm(B3[1:4] ~ t[1:4])$coefficients[[2]]
+m4_eth = lm(B4[1:4] ~ t[1:4])$coefficients[[2]]
+m5_eth = lm(B5[1:4] ~ t[1:4])$coefficients[[2]]
+m6_eth = lm(B6[1:4] ~ t[1:4])$coefficients[[2]]
+m7_eth = lm(B7[1:4] ~ t[1:4])$coefficients[[2]]
+m8_eth = lm(B8[1:4] ~ t[1:4])$coefficients[[2]]
+m9_eth = lm(B9[1:4] ~ t[1:4])$coefficients[[2]]
+m10_eth = lm(B10[1:4] ~ t[1:4])$coefficients[[2]]
+
+m2_meth = lm(C2[1:12] ~ t[1:12])$coefficients[[2]]
+m3_meth = lm(C3[1:12] ~ t[1:12])$coefficients[[2]]
+m4_meth = lm(C4[1:12] ~ t[1:12])$coefficients[[2]]
+m5_meth = lm(C5[1:12] ~ t[1:12])$coefficients[[2]]
+m6_meth = lm(C6[1:12] ~ t[1:12])$coefficients[[2]]
+m7_meth = lm(C7[1:12] ~ t[1:12])$coefficients[[2]]
+m8_meth = lm(C8[1:12] ~ t[1:12])$coefficients[[2]]
+m9_meth = lm(C9[1:12] ~ t[1:12])$coefficients[[2]]
+m10_meth = lm(C10[1:12] ~ t[1:12])$coefficients[[2]]
+
+m2_prop = lm(D2[1:12] ~ t[1:12])$coefficients[[2]]
+m3_prop = lm(D3[1:12] ~ t[1:12])$coefficients[[2]]
+m4_prop = lm(D4[1:12] ~ t[1:12])$coefficients[[2]]
+m5_prop = lm(D5[1:12] ~ t[1:12])$coefficients[[2]]
+m6_prop = lm(D6[1:12] ~ t[1:12])$coefficients[[2]]
+m7_prop = lm(D7[1:12] ~ t[1:12])$coefficients[[2]]
+m8_prop = lm(D8[4:12] ~ t[4:12])$coefficients[[2]]
+m9_prop = lm(D9[1:12] ~ t[1:12])$coefficients[[2]]
+m10_prop = lm(D10[1:12] ~ t[1:12])$coefficients[[2]]
+
+m2_oct = lm(E2[1:16] ~ t[1:16])$coefficients[[2]]
+m3_oct = lm(E3[1:16] ~ t[1:16])$coefficients[[2]]
+m4_oct = lm(E4[1:16] ~ t[1:16])$coefficients[[2]]
+m5_oct = lm(E5[1:16] ~ t[1:16])$coefficients[[2]]
+m6_oct = lm(E6[1:16] ~ t[1:16])$coefficients[[2]]
+m7_oct = lm(E7[1:16] ~ t[1:16])$coefficients[[2]]
+m8_oct = lm(E8[1:16] ~ t[1:16])$coefficients[[2]]
+m9_oct = lm(E9[1:16] ~ t[1:16])$coefficients[[2]]
+m10_oct = lm(E10[1:16] ~ t[1:16])$coefficients[[2]]
+
+V0s_eth = c(m2_eth, m3_eth, m4_eth, m5_eth, m6_eth, m7_eth, m8_eth, m9_eth, m10_eth)#inital rates
+V0s_eth = V0s_eth - m10_eth
+
+V0s_meth = c(m2_meth, m3_meth, m4_meth, m5_meth, m6_meth, m7_meth, m8_meth, m9_meth, m10_meth)
+V0s_meth = V0s_meth - m10_meth
+
+V0s_prop = c(m2_prop, m3_prop, m4_prop, m5_prop, m6_prop, m7_prop, m8_prop, m9_prop, m10_prop)
+V0s_prop = V0s_prop - m10_prop
+
+V0s_oct = c(m2_oct, m3_oct, m4_oct, m5_oct, m6_oct, m7_oct, m8_oct, m9_oct, m10_oct)
+V0s_oct = V0s_oct - m10_oct
+
+Cs = c(1.2, .9, .6, .3, .21, .099, .048, .021, 0) # substrate concentrations
+
+
+plot(Cs, V0s_eth, ylab = "Initial velocity (micormolar/second)", xlab = "Concentration of substrates (micro molar)", sub = "Figure 5: Michalis-Menten plot for Ethanol ")
+
+plot(Cs, V0s_meth, ylab = "Initial velocity (m/L-min)", xlab = "Diffrent concentration of substrates (micro molar)", sub = "Figure 6: Michalis-Menten plot for Methanol")
+
+
+```
+
+```{r,fig.width=3,fig.height=3}
+plot(Cs, V0s_prop, ylab = "Initial velocity (m/L-min)", xlab = "Diffrent concentration of substrates (micro molar)", sub = "Figure 7: Michalis-Menten plot for Propanol")
+
+plot(Cs, V0s_oct, ylab = "Initial velocity (nmol/L-min)", xlab = "Diffrent concentration of substrates (micro molar)", sub = "Figure 8: Michalis-Menten plot for Octanol")
+```
+
+
+```{r}
+fit_mm_eth = nls(V0s_eth ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.0006, KM = 0.1)) #nls fit M-M model
+fit_mm_meth = nls(V0s_meth ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.00008, KM = 0.3)) #nls fit M-M model
+fit_mm_prop = nls(V0s_prop ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.00003 , KM = 0.1)) #nls fit M-M model
+fit_mm_oct = nls(V0s_oct ~ Vmax * Cs / (KM + Cs), start = c(Vmax = 0.00003, KM = 0.001)) #nls fit M-M model
+
+
+Vmax_mm_eth <- summary(fit_mm_eth)$coefficients[[1,1]] # extracting coefficients
+KM_mm_eth <- summary(fit_mm_eth)$coefficients[[2,1]]
+
+Vmax_mm_meth <- summary(fit_mm_meth)$coefficients[[1,1]] # extracting coefficients
+KM_mm_meth <- summary(fit_mm_meth)$coefficients[[2,1]]
+
+Vmax_mm_prop <- summary(fit_mm_prop)$coefficients[[1,1]] # extracting coefficients
+KM_mm_prop <- summary(fit_mm_prop)$coefficients[[2,1]]
+
+Vmax_mm_oct <- summary(fit_mm_oct)$coefficients[[1,1]] # extracting coefficients
+KM_mm_oct <- summary(fit_mm_oct)$coefficients[[2,1]]
+
+V0s_model_eth = Vmax_mm_eth * Cs / (KM_mm_eth + Cs) # building out the model
+V0s_model_meth = Vmax_mm_meth * Cs / (KM_mm_meth + Cs) # building out the model
+V0s_model_prop = Vmax_mm_prop * Cs / (KM_mm_prop + Cs) # building out the model
+V0s_model_oct = Vmax_mm_oct * Cs / (KM_mm_oct + Cs) # building out the model
+
+```
+
+
+```{r,fig.width=3,fig.height=3}
+plot(Cs, V0s_eth, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 6: Ethanol Michaelis-Menten curve")
+lines(Cs, V0s_model_eth, col = 'red') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'red'))
+
+
+plot(Cs, V0s_meth, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 7: Michaelis-Menten curve")
+lines(Cs, V0s_model_meth, col = 'pink') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'pink'))
+
+
+```
+
+```{r,fig.width=3,fig.height=3}
+plot(Cs, V0s_prop, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 8: Michaelis-Menten curve")
+lines(Cs, V0s_model_prop, col = 'orange') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'orange'))
+
+plot(Cs, V0s_oct, xlab = "Concentration of substrate (micromolar)", #plotting M-M
+     ylab = "Initial rate of reaction (micromolar/sec", 
+     sub = "Figure 9: Michaelis-Menten curve")
+lines(Cs, V0s_model_oct, col = 'green') #adding the model to the plot
+legend('bottomright', c("Data", "Model"), lty = c(NA,1), pch = c(1,NA), col = c('black', 'green'))
+```
+
+ 
+```{r,fig.width=5.5,fig.height=4}
+
+plot(Cs, V0s_meth, col = 'pink', xlab = "Concentration of substrate (micromolar)", ylab = "Initial rate of reaction (micromolar/sec)", sub = 'Figure 10: Methanol, Octanol, and Propanol Michaelis-Menten curves')
+points(Cs, V0s_prop, col = 'orange')
+points(Cs, V0s_oct, col = 'green')
+lines(Cs, V0s_model_meth, col = 'pink')
+lines(Cs, V0s_model_prop, col = 'orange')
+lines(Cs, V0s_model_oct, col = 'green')
+legend('topleft', c("Methanol data", "Propanol data", "Octanol data", "Methanol model", "Propanol model", "Octanol model"), lty = c(NA,NA,NA,1,1,1), pch = c(1,1,1,NA,NA,NA), col = c('pink', 'orange', 'green', 'pink', 'orange', 'green'), cex = 0.7)
+```
+
