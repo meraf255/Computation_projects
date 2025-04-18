@@ -1,0 +1,50 @@
+# =============================================
+# Mathematica/Wolfram Language Specific
+# =============================================
+
+# Notebook autosave and backup files
+*.nb~
+*.cdf~
+*.wl~
+*.m~
+
+# Notebook metadata and indices
+*.nb.meta
+*.nb.index
+
+# Temporary files
+*.tmp
+*.temp
+
+# Wolfram Engine/Paclet files
+*.paclet
+*.wln
+
+# Kernel and front-end logs
+*.log
+*.mx
+
+# =============================================
+# Data/Output Files (Exclude large generated files)
+# =============================================
+
+# Generated data/output (adjust paths as needed)
+data/output/
+results/
+*.csv
+*.dat
+*.h5
+*.pdf
+*.png
+
+# =============================================
+# System/IDE Files (Generic)
+# =============================================
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE/Editor (VSCode, etc.)
+.vscode/
+.idea/
